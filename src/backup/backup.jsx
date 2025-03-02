@@ -758,3 +758,394 @@
 //           )}
 //         </div>
 //       </div></onemptied>
+
+
+
+
+
+//iewfuw8fygfy784giwfuygifywgfi43ug
+
+// for the dark and light Thermometer..
+
+
+// import React, { useState, useEffect } from 'react';
+// import { SunIcon, MoonIcon, ArrowLeftIcon, PlayIcon, MicOffIcon, CheckIcon, InfoIcon } from 'lucide-react';
+// import WebcamWithAudioDots from './audio';
+
+
+// const InterviewInterface = () => {
+//   // State for theme
+//   const [darkMode, setDarkMode] = useState(false);
+  
+//   // Get original states from props or useState
+//   const [status, setStatus] = useState('idle');
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState('');
+//   const [isInterviewRunning, setIsInterviewRunning] = useState(false);
+//   const [isRecording, setIsRecording] = useState(false);
+//   const [volumeLevel, setVolumeLevel] = useState(0);
+//   const [recordedAudio, setRecordedAudio] = useState(null);
+//   const [transcript, setTranscript] = useState('');
+//   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(1);
+//   const [totalQuestions] = useState(7);
+  
+//   // Sample interview questions
+//   const interviewQuestions = {
+//     "1": "Tell me about yourself and your background.",
+//     "2": "What experience do you have in this field?",
+//     "3": "What are your strengths and weaknesses?",
+//     "4": "Why do you want to work for this company?",
+//     "5": "Where do you see yourself in five years?",
+//     "6": "Describe a challenge you faced and how you overcame it.",
+//     "7": "Do you have any questions for us?"
+//   };
+
+//   // Check for saved theme preference on component mount
+//   useEffect(() => {
+//     const savedTheme = localStorage.getItem('theme');
+//     if (savedTheme === 'dark') {
+//       setDarkMode(true);
+//     }
+//   }, []);
+
+//   // Update localStorage when theme changes
+//   useEffect(() => {
+//     localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+//   }, [darkMode]);
+
+//   const toggleTheme = () => {
+//     setDarkMode(!darkMode);
+//   };
+
+//   const startInterview = () => {
+//     setIsInterviewRunning(true);
+//     setStatus('starting');
+//     // Mock implementation
+//     setTimeout(() => setStatus('asking'), 1000);
+//   };
+
+//   const stopInterview = () => {
+//     setIsInterviewRunning(false);
+//     setIsRecording(false);
+//     setStatus('stopped');
+//   };
+
+//   const stopRecording = () => {
+//     setIsRecording(false);
+//     setStatus('processing');
+//     // Mock implementation
+//     setTimeout(() => setStatus('completed'), 1000);
+//   };
+
+//   const getStatusColor = () => {
+//     switch (status) {
+//       case 'ready': return darkMode ? 'text-green-400' : 'text-green-500';
+//       case 'listening': return darkMode ? 'text-yellow-400' : 'text-yellow-500';
+//       case 'processing': return darkMode ? 'text-blue-400' : 'text-blue-500';
+//       case 'completed': return darkMode ? 'text-purple-400' : 'text-purple-500';
+//       default: return darkMode ? 'text-gray-400' : 'text-gray-500';
+//     }
+//   };
+
+//   // StatusBadge component
+//   const StatusBadge = ({ status, loading }) => {
+//     const statusConfig = {
+//       idle: { 
+//         bg: darkMode ? 'bg-gray-700' : 'bg-gray-100', 
+//         text: darkMode ? 'text-gray-200' : 'text-gray-800', 
+//         label: 'Ready' 
+//       },
+//       asking: { 
+//         bg: darkMode ? 'bg-blue-900' : 'bg-blue-100', 
+//         text: darkMode ? 'text-blue-200' : 'text-blue-800', 
+//         label: 'Asking' 
+//       },
+//       listening: { 
+//         bg: darkMode ? 'bg-yellow-900' : 'bg-yellow-100', 
+//         text: darkMode ? 'text-yellow-200' : 'text-yellow-800', 
+//         label: 'Listening' 
+//       },
+//       processing: { 
+//         bg: darkMode ? 'bg-blue-900' : 'bg-blue-100', 
+//         text: darkMode ? 'text-blue-200' : 'text-blue-800', 
+//         label: 'Processing' 
+//       },
+//       completed: { 
+//         bg: darkMode ? 'bg-purple-900' : 'bg-purple-100', 
+//         text: darkMode ? 'text-purple-200' : 'text-purple-800', 
+//         label: 'Completed' 
+//       },
+//       error: { 
+//         bg: darkMode ? 'bg-red-900' : 'bg-red-100', 
+//         text: darkMode ? 'text-red-200' : 'text-red-800', 
+//         label: 'Error' 
+//       },
+//       stopped: { 
+//         bg: darkMode ? 'bg-gray-700' : 'bg-gray-100', 
+//         text: darkMode ? 'text-gray-200' : 'text-gray-800', 
+//         label: 'Stopped' 
+//       },
+//       starting: { 
+//         bg: darkMode ? 'bg-green-900' : 'bg-green-100', 
+//         text: darkMode ? 'text-green-200' : 'text-green-800', 
+//         label: 'Starting' 
+//       }
+//     };
+
+//     const config = statusConfig[status] || statusConfig.idle;
+    
+//     return (
+//       <span className={`text-sm font-medium px-2 py-1 rounded-full flex items-center ${config.bg} ${config.text}`}>
+//         {loading ? (
+//           <>
+//             <span className="animate-pulse mr-1">●</span> Loading...
+//           </>
+//         ) : (
+//           config.label
+//         )}
+//       </span>
+//     );
+//   };
+
+
+//   return (
+//     <div className={`min-h-screen transition-colors duration-200 ${
+//       darkMode 
+//         ? 'bg-gray-900 text-white' 
+//         : 'bg-gradient-to-br from-blue-50 via-white to-purple-50 text-gray-800'
+//     }`}>
+//       {/* Theme Toggle Button */}
+//       <button 
+//         onClick={toggleTheme} 
+//         className={`fixed top-4 right-4 p-2 rounded-full shadow-md z-10 transition-colors ${
+//           darkMode 
+//             ? 'bg-gray-800 text-gray-200 hover:bg-gray-700' 
+//             : 'bg-white text-gray-800 hover:bg-gray-100'
+//         }`}
+//         aria-label="Toggle theme"
+//       >
+//         {darkMode ? <SunIcon size={20} /> : <MoonIcon size={20} />}
+//       </button>
+
+//       <div className={`max-w-6xl mx-auto p-8 rounded-xl shadow-xl transition-colors ${
+//         darkMode 
+//           ? 'bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800' 
+//           : 'bg-gradient-to-br from-blue-50 via-white to-purple-50'
+//       }`}>
+//         <h2 className={`text-3xl font-bold text-center mb-6 ${
+//           darkMode 
+//             ? 'text-white' 
+//             : 'bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600'
+//         }`}>
+//           Interactive Interview Assistant
+//         </h2>
+        
+//         <div>
+//           <button 
+//             onClick={() => window.location.href = '/'}
+//             className={`px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors duration-300 flex items-center ${
+//               darkMode ? 'bg-blue-700 text-white' : 'bg-blue-600 text-white hover:bg-blue-700'
+//             }`}
+//           >
+//             <ArrowLeftIcon size={16} className="mr-2" /> Back
+//           </button>
+//         </div>
+
+//         {/* Webcam Display */}
+//         <WebcamWithAudioDots />
+        
+//         {/* Progress Bar */}
+//         <div className="mb-8 px-4">
+//           <div className={`flex justify-between text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+//             <span>Progress</span>
+//             <span>{Math.round((currentQuestionNumber / 7) * 100)}%</span>
+//           </div>
+//           <div className={`w-full rounded-full h-2.5 ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>
+//             <div
+//               className="bg-gradient-to-r from-blue-600 to-purple-600 h-2.5 rounded-full transition-all duration-500 ease-in-out"
+//               style={{ width: `${(currentQuestionNumber / 7) * 100}%` }}
+//             ></div>
+//           </div>
+//         </div>
+        
+//         {/* Error Message */}
+//         {error && (
+//           <div className={`border-l-4 border-red-500 p-4 mb-6 rounded-lg flex items-center ${
+//             darkMode ? 'bg-red-900 bg-opacity-50 text-red-200' : 'bg-red-50 text-red-700'
+//           }`}>
+//             <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+//               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
+//             </svg>
+//             {error}
+//           </div>
+//         )}
+        
+//         {/* Control Panel */}
+//         <div className="flex justify-center space-x-4 mb-8">
+//           {!isInterviewRunning ? (
+//             <button
+//               onClick={startInterview}
+//               disabled={status === 'completed' || loading}
+//               className={`px-6 py-3 rounded-lg font-medium shadow-md transition-all duration-300 transform hover:scale-105 flex items-center justify-center ${
+//                 status === 'completed'
+//                   ? darkMode ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+//                   : darkMode ? 'bg-gradient-to-r from-blue-700 to-blue-800 text-white' : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white'
+//               }`}
+//             >
+//               {status === 'completed' ? (
+//                 <>
+//                   <CheckIcon size={20} className="mr-2" />
+//                   Interview Completed
+//                 </>
+//               ) : (
+//                 <>
+//                   <PlayIcon size={20} className="mr-2" />
+//                   Start Interview
+//                 </>
+//               )}
+//             </button>
+//           ) : (
+//             <>
+//               <button
+//                 onClick={stopInterview}
+//                 disabled={loading}
+//                 className={`px-6 py-3 rounded-lg font-medium shadow-md transition-all duration-300 transform hover:scale-105 flex items-center ${
+//                   darkMode ? 'bg-gradient-to-r from-red-700 to-red-800 text-white' : 'bg-gradient-to-r from-red-500 to-red-600 text-white'
+//                 }`}
+//               >
+                
+//                 Stop Interview
+//               </button>
+              
+//               {isRecording && (
+//                 <button
+//                   onClick={stopRecording}
+//                   disabled={loading}
+//                   className={`px-6 py-3 rounded-lg font-medium shadow-md transition-all duration-300 transform hover:scale-105 flex items-center ${
+//                     darkMode ? 'bg-gradient-to-r from-purple-700 to-purple-800 text-white' : 'bg-gradient-to-r from-purple-500 to-purple-600 text-white'
+//                   }`}
+//                 >
+//                   <MicOffIcon size={20} className="mr-2" />
+//                   Stop Recording
+//                 </button>
+//               )}
+//             </>
+//           )}
+//         </div>
+        
+//         {/* Two-column layout for desktop */}
+//         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+//           {/* Question Card */}
+//           <div className={`p-6 rounded-xl shadow-lg flex flex-col transition-all duration-500 hover:shadow-xl ${
+//             darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-100'
+//           }`}>
+//             <div className="mb-4 flex justify-between items-center">
+//               <span className={`text-sm font-semibold px-3 py-1 rounded-full border ${
+//                 darkMode ? 'text-blue-300 bg-blue-900 bg-opacity-40 border-blue-800' : 'text-blue-600 bg-blue-50 border-blue-100'
+//               }`}>
+//                 Question {currentQuestionNumber} of {totalQuestions}
+//               </span>
+//               <div className="flex items-center">
+//                 <span className={`text-sm mr-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Status:</span>
+//                 <StatusBadge status={status} loading={loading} />
+//               </div>
+//             </div>
+            
+//             <div className={`text-xl font-medium mb-6 flex-grow ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>
+//               {currentQuestionNumber <= totalQuestions
+//                 ? interviewQuestions[currentQuestionNumber.toString()]
+//                 : "Congratulations! You've completed the interview."}
+//             </div>
+            
+//             {isRecording && (
+//               <div className={`flex items-center justify-center p-4 rounded-lg border ${
+//                 darkMode ? 'bg-red-900 bg-opacity-30 border-red-800' : 'bg-red-50 border-red-100'
+//               }`}>
+//                 <div
+//                   className="w-4 h-4 bg-red-500 rounded-full mr-3 animate-pulse"
+//                   style={{ opacity: Math.max(0.3, volumeLevel * 2) }}
+//                 ></div>
+//                 <span className={darkMode ? 'text-red-300 font-medium' : 'text-red-600 font-medium'}>Recording your answer...</span>
+//               </div>
+//             )}
+//           </div>
+          
+//           {/* Response Card */}
+//           <div className={`p-6 rounded-xl shadow-lg transition-all duration-500 hover:shadow-xl ${
+//             darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-100'
+//           }`}>
+//             <h3 className={`text-lg font-medium mb-4 flex items-center ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+//               <svg className={`w-5 h-5 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+//               </svg>
+//               Your Response
+//             </h3>
+            
+//             {recordedAudio ? (
+//               <div className={`mb-6 p-4 rounded-lg border ${
+//                 darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'
+//               }`}>
+//                 <audio
+//                   controls
+//                   src={recordedAudio}
+//                   className="w-full"
+//                 />
+//               </div>
+//             ) : (
+//               <div className={`flex items-center justify-center h-24 rounded-lg border border-dashed mb-6 ${
+//                 darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'
+//               }`}>
+//                 <div className={`text-center italic ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>
+//                   <svg className={`w-8 h-8 mx-auto mb-2 ${darkMode ? 'text-gray-500' : 'text-gray-300'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+//                   </svg>
+//                   <p>Your recorded response will appear here</p>
+//                 </div>
+//               </div>
+//             )}
+            
+//             {transcript ? (
+//               <div>
+//                 <h3 className={`text-lg font-medium mb-2 flex items-center ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+//                   <svg className={`w-5 h-5 mr-2 ${darkMode ? 'text-blue-400' : 'text-blue-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                   </svg>
+//                   Transcript
+//                 </h3>
+//                 <div className={`p-4 rounded-lg border max-h-64 overflow-y-auto ${
+//                   darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'
+//                 }`}>
+//                   <p className={`whitespace-pre-wrap text-sm font-mono ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+//                     {transcript}
+//                   </p>
+//                 </div>
+//               </div>
+//             ) : (
+//               <div className={`text-center italic ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>
+//                 <p>Transcript will appear here after recording</p>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+        
+//         {/* Tips Section */}
+//         <div className={`mt-8 p-4 rounded-lg border ${
+//           darkMode ? 'bg-blue-900 bg-opacity-30 border-blue-800' : 'bg-blue-50 border-blue-100'
+//         }`}>
+//           <h3 className={`text-md font-medium mb-2 flex items-center ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>
+//             <InfoIcon size={18} className="mr-2" />
+//             Interview Tips
+//           </h3>
+//           <ul className={`text-sm ${darkMode ? 'text-blue-200' : 'text-blue-800'}`}>
+//             <li className="mb-1">• Speak clearly and at a moderate pace</li>
+//             <li className="mb-1">• Structure your answers with examples when possible</li>
+//             <li className="mb-1">• Take a moment to collect your thoughts before answering</li>
+//             <li className="mb-1">• Focus on relevant experiences and achievements</li>
+//           </ul>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default InterviewInterface;
